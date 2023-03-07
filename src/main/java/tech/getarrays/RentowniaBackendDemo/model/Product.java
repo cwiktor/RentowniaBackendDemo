@@ -10,6 +10,8 @@ public class Product {
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
+    @OneToOne
+    private Offer offer;
     //enum kategory
     //enum codition
 

@@ -20,6 +20,8 @@ public class Address {
     private String ZipCode;
     private String Street;
     private String number;
+    @OneToOne
+    private User user;
 
     public Address() {
     }

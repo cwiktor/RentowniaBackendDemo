@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -20,8 +22,10 @@ public class Offer {
 
     private LocalDate dateFrom;
     private LocalDate dateTo;
-
-    //private Product product;
+    @OneToOne
+    private Product product;
+    @ManyToOne
+    private User user;
 
     public Offer() {
     }

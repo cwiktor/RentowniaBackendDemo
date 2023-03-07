@@ -10,7 +10,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public abstract class Person {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
