@@ -4,7 +4,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tech.getarrays.RentowniaBackendDemo.model.Product;
 import tech.getarrays.RentowniaBackendDemo.model.User;
 import tech.getarrays.RentowniaBackendDemo.service.UserService;
 

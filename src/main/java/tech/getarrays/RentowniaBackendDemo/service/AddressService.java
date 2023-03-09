@@ -34,5 +34,4 @@ public class AddressService {
     public void deleteAddressById(Long addressId){ //implement exception if record not exists
         addressRepository.deleteById(addressId);
     }
-
 }

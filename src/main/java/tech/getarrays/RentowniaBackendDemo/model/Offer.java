@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,17 +21,17 @@ public class Offer {
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    private LocalDate dateFrom;
-    private LocalDate dateTo;
-    @OneToOne
-    private Product product;
-    @ManyToOne
-    private User user;
+    private Date dateFrom;
+    private Date dateTo;
+
+   // @OneToOne
+ //   private Product product;
+  //  private User user;
 
     public Offer() {
     }
 
-    public Offer(LocalDate dateFrom, LocalDate dateTo) {
+    public Offer(Date dateFrom, Date dateTo) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }

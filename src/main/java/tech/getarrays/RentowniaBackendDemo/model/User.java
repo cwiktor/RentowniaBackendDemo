@@ -1,8 +1,6 @@
 package tech.getarrays.RentowniaBackendDemo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,7 +19,8 @@ public class User extends Person{
     private String avatarUrl;
     @OneToOne
     private Address address;
-    @OneToMany
+    @OneToMany(targetEntity = Offer.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "uo_fk", referencedColumnName = "id")
     private List<Offer> offers = new ArrayList();
 
     public User() {

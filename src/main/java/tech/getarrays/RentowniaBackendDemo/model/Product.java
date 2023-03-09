@@ -10,6 +10,14 @@ public class Product {
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
+
+    public Product() {
+    }
+
+    public Product(String name) {
+        this.name = name;
+    }
+
     @OneToOne
     private Offer offer;
     //enum kategory
