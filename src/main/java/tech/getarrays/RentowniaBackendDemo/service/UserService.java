@@ -20,7 +20,7 @@ public class UserService {
     public User addUser(User user){
         return userRepository.save(user);
     }
-    public User getUserById(Long userId){ //implement exception if record not exists
+    public User getUserById(Long userId){
         return userRepository.getUserById(userId).
                 orElseThrow(() -> new UserNotFoundException("User not found"));
     }

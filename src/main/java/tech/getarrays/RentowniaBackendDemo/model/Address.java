@@ -1,5 +1,6 @@
 package tech.getarrays.RentowniaBackendDemo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Address {
     private String ZipCode;
     private String Street;
     private String number;
+    @JsonIgnore
     @OneToOne(mappedBy = "address")
     private User user;
 

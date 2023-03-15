@@ -22,7 +22,7 @@ public class AddressService {
         return addressRepository.save(address);
     }
     public Address getAddressById(Long addressId){ //implement exception if record not exists
-        return addressRepository.getReferenceById(addressId);
+        return addressRepository.getAddressById(addressId);
     }
     public List<Address> getAllAddresss(){
         List<Address> addressList = addressRepository.findAll();

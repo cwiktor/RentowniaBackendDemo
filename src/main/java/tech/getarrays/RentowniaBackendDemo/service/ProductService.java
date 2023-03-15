@@ -20,7 +20,7 @@ public class ProductService {
         return productRepository.save(product);
     }
     public Product getProductById(Long productId){ //implement exception if record not exists
-        return productRepository.getReferenceById(productId);
+        return productRepository.getProductById(productId);
     }
     public List<Product> getAllProducts(){
         List<Product> productList = productRepository.findAll();

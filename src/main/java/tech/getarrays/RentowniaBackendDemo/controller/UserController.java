@@ -4,7 +4,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tech.getarrays.RentowniaBackendDemo.model.Address;
 import tech.getarrays.RentowniaBackendDemo.model.User;
+import tech.getarrays.RentowniaBackendDemo.service.AddressService;
 import tech.getarrays.RentowniaBackendDemo.service.UserService;
 
 import java.util.List;
@@ -14,9 +16,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final AddressService addressService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AddressService addressService) {
         this.userService = userService;
+        this.addressService = addressService;
     }
 
     @GetMapping("/getAll")
@@ -44,5 +48,14 @@ public class UserController {
     public ResponseEntity<User> deleteUserById(@PathVariable("id") Long id){
         userService.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{user_id}/address/{address_id}")
+    public ResponseEntity<User> addAddressToUser(@PathVariable Long user_id, @PathVariable Long address_id){
+        User user = userService.getUserById(user_id);
+        Address address = addressService.getAddressById(address_id);
+        user.setAddress(address);
+        userService.updateUser(user);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

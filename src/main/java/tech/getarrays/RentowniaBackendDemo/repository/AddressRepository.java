@@ -6,4 +6,5 @@ import tech.getarrays.RentowniaBackendDemo.model.Address;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
+    Address getAddressById(Long addressId);
 }

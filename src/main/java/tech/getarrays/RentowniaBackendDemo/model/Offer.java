@@ -21,8 +21,8 @@ public class Offer {
     private Date dateFrom;
     private Date dateTo;
 
-   // @OneToOne
- //   private Product product;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Product product;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
