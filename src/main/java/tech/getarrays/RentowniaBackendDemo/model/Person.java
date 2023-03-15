@@ -16,7 +16,7 @@ public abstract class Person {
     private Long id;
     private String name;
     private String lastName;
-    private String email;
+    private String email; //in future will add mail existing checking
 
     public Person() {
     }

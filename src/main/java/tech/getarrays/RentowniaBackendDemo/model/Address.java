@@ -19,7 +19,7 @@ public class Address {
     private String ZipCode;
     private String Street;
     private String number;
-    @OneToOne
+    @OneToOne(mappedBy = "address")
     private User user;
 
     public Address() {

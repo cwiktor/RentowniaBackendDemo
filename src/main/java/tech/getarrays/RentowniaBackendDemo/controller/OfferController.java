@@ -5,7 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.getarrays.RentowniaBackendDemo.model.Offer;
+import tech.getarrays.RentowniaBackendDemo.model.User;
 import tech.getarrays.RentowniaBackendDemo.service.OfferService;
+import tech.getarrays.RentowniaBackendDemo.service.UserService;
 
 import java.util.List;
 
@@ -15,8 +17,11 @@ public class OfferController {
 
     private final OfferService offerService;
 
-    public OfferController(OfferService offerService) {
+    private final UserService userService;
+
+    public OfferController(OfferService offerService, UserService userService) {
         this.offerService = offerService;
+        this.userService = userService;
     }
 
     @GetMapping("/getAll")
@@ -45,4 +50,19 @@ public class OfferController {
         offerService.deleteOfferById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/update/{offer_id}/user/{user_id}")
+    public ResponseEntity<Offer> addUserToOffer(@PathVariable Long offer_id, @PathVariable Long user_id){
+        Offer offer = offerService.getOfferById(offer_id);
+        User user = userService.getUserById(user_id);
+        offer.setUser(user);
+        System.out.println(user.getId());
+        System.out.println(offer.getId());
+        System.out.println(user.getOffers());
+        System.out.println(offer.getUser().getName());
+        offerService.updateOffer(offer);
+        userService.updateUser(user);
+        return new ResponseEntity<>(offer, HttpStatus.OK);
+    }
+
 }

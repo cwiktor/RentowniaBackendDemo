@@ -2,6 +2,7 @@ package tech.getarrays.RentowniaBackendDemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tech.getarrays.RentowniaBackendDemo.exception.UserNotFoundException;
 import tech.getarrays.RentowniaBackendDemo.model.User;
 import tech.getarrays.RentowniaBackendDemo.repository.UserRepository;
 
@@ -20,7 +21,8 @@ public class UserService {
         return userRepository.save(user);
     }
     public User getUserById(Long userId){ //implement exception if record not exists
-        return userRepository.getReferenceById(userId);
+        return userRepository.getUserById(userId).
+                orElseThrow(() -> new UserNotFoundException("User not found"));
     }
     public List<User> getAllUsers(){
         List<User> userList = userRepository.findAll();

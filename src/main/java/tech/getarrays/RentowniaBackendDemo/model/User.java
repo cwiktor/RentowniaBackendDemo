@@ -1,5 +1,6 @@
 package tech.getarrays.RentowniaBackendDemo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,15 +14,14 @@ import java.util.List;
 @Setter
 @ToString
 public class User extends Person{
-
     private String number;
     private int loyaltyLevel;
     private String avatarUrl;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
-    @OneToMany(targetEntity = Offer.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "uo_fk", referencedColumnName = "id")
-    private List<Offer> offers = new ArrayList();
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Offer> offers = new ArrayList<>();
 
     public User() {
     }

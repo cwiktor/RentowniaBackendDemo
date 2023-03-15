@@ -2,6 +2,7 @@ package tech.getarrays.RentowniaBackendDemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tech.getarrays.RentowniaBackendDemo.exception.OfferNotFoundException;
 import tech.getarrays.RentowniaBackendDemo.model.Offer;
 import tech.getarrays.RentowniaBackendDemo.repository.OfferRepository;
 
@@ -20,7 +21,8 @@ public class OfferService {
         return offerRepository.save(offer);
     }
     public Offer getOfferById(Long offerId){ //implement exception if record not exists
-        return offerRepository.getReferenceById(offerId);
+        return offerRepository.getOfferById(offerId).
+                orElseThrow(()-> new OfferNotFoundException("Offer not found"));
     }
     public List<Offer> getAllOffers(){
         List<Offer> offerList = offerRepository.findAll();
