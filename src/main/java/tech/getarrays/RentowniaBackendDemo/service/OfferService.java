@@ -20,7 +20,7 @@ public class OfferService {
     public Offer addOffer(Offer offer){
         return offerRepository.save(offer);
     }
-    public Offer getOfferById(Long offerId){ //implement exception if record not exists
+    public Offer getOfferById(Long offerId){
         return offerRepository.getOfferById(offerId).
                 orElseThrow(()-> new OfferNotFoundException("Offer not found"));
     }

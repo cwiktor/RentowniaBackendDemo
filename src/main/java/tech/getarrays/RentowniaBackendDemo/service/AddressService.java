@@ -2,6 +2,7 @@ package tech.getarrays.RentowniaBackendDemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tech.getarrays.RentowniaBackendDemo.exception.AddressNotFoundException;
 import tech.getarrays.RentowniaBackendDemo.model.Address;
 import tech.getarrays.RentowniaBackendDemo.repository.AddressRepository;
 
@@ -21,8 +22,9 @@ public class AddressService {
     public Address addAddress(Address address){
         return addressRepository.save(address);
     }
-    public Address getAddressById(Long addressId){ //implement exception if record not exists
-        return addressRepository.getAddressById(addressId);
+    public Address getAddressById(Long addressId){
+        return addressRepository.getAddressById(addressId).
+                orElseThrow(()->new AddressNotFoundException("Address not found"));
     }
     public List<Address> getAllAddresss(){
         List<Address> addressList = addressRepository.findAll();
